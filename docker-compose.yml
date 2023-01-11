@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    platform: linux/x86_64
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/myapp
+    env_file:
+      - .env_file/development/database
+      - .env_file/development/web
+
+  database:
+    image: postgres:14
+    env_file:
+      - .env_file/development/database
+    ports:
+      - 5432:5432
+    volumes:
+      - db-store:/var/lib/postgresql/data
+
+volumes:
+  db-store:
