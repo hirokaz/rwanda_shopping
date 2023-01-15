@@ -1,0 +1,46 @@
+<%provide(:title,"items")%>
+<div class="shopping-list">
+  <h1>Tops</h1>
+  <div class="autoplay">
+      <% @items.each do |item| %>
+      <div class="card" style="width: 18rem;">
+              <img src="" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text"><span><%= item.name %></span></p>
+                  <p class="card-text"><span><%= item.size %></span></p>
+                  <p class="card-text"><span><%= item.description %></span></p>
+                  <%= link_to("Buy It", item_path(item), {class: "btn btn-primary stretched-link"}) %>
+              </div>
+      </div>
+    <% end %>
+  </div>
+  
+</div>
+<div class="shopping-list">
+  <h1>Bottoms</h1>
+  <div class="autoplay">
+      <% @items.each do |item| %>
+      <div class="card" style="width: 18rem;">
+              <img src="" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text"><span><%= item.name %></span></p>
+                  <p class="card-text"><span><%= item.size %></span></p>
+                  <p class="card-text"><span><%= item.description %></span></p>
+                   <%= link_to("Buy It", item_path(item), {class: "btn btn-primary stretched-link"}) %>
+              </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+ $('.autoplay').slick({
+  slidesToShow: 3,
+  slidesToScroll:1,
+  autoplay: true,
+  autoplaySpeed: 3000,
+// 画像下のドット（ページ送り）を表示
+  dots:true,
+});
+  </script>
