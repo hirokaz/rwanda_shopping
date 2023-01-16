@@ -25,3 +25,9 @@ body{
     border:0.5px solid #eee;/*周囲に薄いボーダー*/
 }
 
+
+.slick-prev:before,
+.slick-next:before
+{
+    color: #909090 !important;
+}

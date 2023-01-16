@@ -9,6 +9,9 @@ RUN apt-get install -yqq --no-install-recommends \
   postgresql-client \
   vim
 
+RUN apt-get update
+RUN apt-get install vim
+
 RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
