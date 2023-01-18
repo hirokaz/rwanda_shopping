@@ -27,6 +27,7 @@ gem "jbuilder", "~> 2.7"
 gem "bootstrap"
 gem "jquery-rails"
 gem "aws-sdk-s3"
+gem "faker"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
