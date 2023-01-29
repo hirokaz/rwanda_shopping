@@ -1,12 +1,95 @@
-<h2>Title</h2>
 
+<div class="row mt-4">
+    <div class="col">
+       <div id="wrap">
+                  <ul id="slider">
+                    <li class="slide-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_1.jpg" alt="画像"></li>
+                    <li class="slide-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_2.jpg" alt="画像"></li>
+                    <li class="slide-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_3.jpg" alt="画像"></li>
+                    <li class="slide-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_4.jpg" alt="画像"></li>
+                    <li class="slide-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_5.jpg" alt="画像"></li>
+                    <li class="slide-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_6.jpg" alt="画像"></li>
+                  </ul>
+                  <ul id="thumbnail_slider">
+                    <li class="thumbnail-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_1.jpg" alt="画像"></li>
+                    <li class="thumbnail-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_2.jpg" alt="画像"></li>
+                    <li class="thumbnail-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_3.jpg" alt="画像"></li>
+                    <li class="thumbnail-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_4.jpg" alt="画像"></li>
+                    <li class="thumbnail-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_5.jpg" alt="画像"></li>
+                    <li class="thumbnail-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_6.jpg" alt="画像"></li>
+                  </ul>
+            </div>
+    </div>
+    <div class="col mt-5">
+      <div class="title-detail">
+        <h2><%= @item.name %></h2>
+      </div>
+      <div class="product-price">
+        <h2 class="text-success"><%= @item.price %>$<h2>
+      </div>
+        <div class="add-to-cart">
+            <div class="row">
+                <div class="col-6">
+                      <select class="form-select pr-2" aria-label="Default select example">
+                        <option selected>select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3"></option>
+                      </select>  
+                </div>     
+                <div class="col-6">
+                <button type="button" class="btn btn-primary">Add to cart</button>
+                </div>
+            </div>
+        </div>          
+       </div>  
+      </div>
+    </div>
+</div>
+<div class="row p-5">
+    <div class="col p-5">
+        <h3>description</h3>
+        <p><%= @item.description %> A cloth is a piece of cloth which you use for a particular purpose,
+        such as cleaning something or covering something.
+        Clean the surface with a damp cloth.a tray covered with a cloth.
+        A cloth is a piece of cloth which you use for a particular purpose,
+        such as cleaning something or covering something.
+        Clean the surface with a damp cloth.a tray covered with a cloth.A cloth is a piece of cloth which you use for a particular purpose,
+        such as cleaning something or covering something.
+        Clean the surface with a damp cloth.a tray covered with a cloth.A cA cloth is a piece of cloth which you use for a particular purpose,
+        such as cleaning something or covering something.
+        Clean the surface with a damp cloth.a tray covered with a cloth.loth is a piece of cloth which you use for a particular purpose,
+        such as cleaning something or covering something.
+        Clean the surface with a damp cloth.a tray covered with a cloth.A cloth is a piece of cloth which you use for a particular purpose,
+        such as cleaning something or covering something.
+        Clean the surface with a damp cloth.a tray covered with a cloth.A cloth is a piece of cloth which you use for a particular purpose,
+        such as cleaning something or covering something.
+        Clean the surface with a damp cloth.a tray covered with a cloth.
+        </p>
+    </div>   
+</div>      
 
-<p><%= @item.name %></p>
-<h2>text</h2>
-<p><%= @item.size %></p>
-<h2>description</h2>
-<p><%= @item.description %></p>
 
 <script type="text/javascript">
+  $(function(){
+ var mainSlider = "#slider"; //メインスライダーid
+ var thumbnailSlider = "#thumbnail_slider"; //サムネイルスライダーid
  
-  </script>
+  $(mainSlider).slick({
+    autoplay: true,
+    speed: 1000,
+    arrows: false,
+    asNavFor: thumbnailSlider
+  });
+  $(thumbnailSlider).slick({
+    slidesToShow: 3,
+    speed: 1000,    
+    asNavFor: mainSlider
+  });
+  //#thumbnail_sliderでクリックしたスライドをカレントにする
+  $(thumbnailSlider+" .slick-slide").on('click',function(){
+    var index = $(this).attr("data-slick-index");
+    $(thumbnailSlider).slick("slickGoTo",index,false);
+  });
+});
+</script>

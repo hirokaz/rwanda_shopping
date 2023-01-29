@@ -5,15 +5,21 @@
 
 
 <div class="shopping-list">
-  <h1>Tops</h1>
-  <%= link_to("View All", "#", {class: "btn float-right btn-outline-primary"}) %>
-  <div class="autoplay">
+<div class="row pt-2 pb-2">
+    <div class="col Item-title">
+      <h1>Tops</h1>
+    </div> 
+    <div class="col pt-2">
+      <%= link_to("View All", "#", {class: "btn btn-outline-primary View-All-button"}) %>
+    </div>
+</div>
+  <div class="autoplay pt-2">
       <% @items.each do |item| %>
       <div class="card" style="width: 18rem;">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRpEROXeKuscutNi69hO7y2LNgZ8HfZncJMw&usqp=CAU" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <p class="card-text"><span><%= item.name %></span></p>
-                  <p class="card-text"><span><%= item.price %>$</span></p>
+                  <p class="card-text fw-bold"><span><%= truncate(item.name, length: 18)%></span></p>
+                  <div class="product-price-index pb-2 text-success"><span><%= item.price %>$</span></div>
                   <%= link_to("Buy It", item_path(item), {class: "btn btn-primary stretched-link"}) %>
               </div>
       </div>
@@ -22,14 +28,20 @@
   
 </div>
 <div class="shopping-list">
-  <h1>Bottoms</h1>
-  <%= link_to("View All", "#", {class: "btn float-right btn-outline-primary"}) %>
+  <div class="row pt-2 pb-2">
+    <div class="col Item-title">
+      <h1>Tops</h1>
+    </div> 
+    <div class="col pt-2">
+      <%= link_to("View All", "#", {class: "btn btn-outline-primary View-All-button"}) %>
+    </div>
+</div>
   <div class="autoplay">
       <% @items.each do |item| %>
       <div class="card" style="width: 18rem;">
               <img src="data:image/jpeg;base64,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" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <p class="card-text"><span><%= item.name %></span></p>
+                  <p class="card-text"><span> <%= truncate(item.name, length: 18)%></span></p>
                   <p class="card-text"><span><%= item.price %>$</span></p>
                    <%= link_to("Buy It", item_path(item), {class: "btn btn-primary stretched-link"}) %>
               </div>
@@ -37,6 +49,24 @@
     <% end %>
   </div>
 </div>
+    <div class="All items">
+      <div class="row row-cols-1 row-cols-md-3 g-4 pt-3"> 
+      <%6.times do %>
+        <div class="col-6 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="https://cdn.shopify.com/s/files/1/0583/6865/5525/products/coffee_e92bf7ab-56e7-4f0b-8d0c-099caf7b89c7_1024x1024.jpg?v=1656471453" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+      <%end %>  
+      </div>
+    </div>
 
 
 <script type="text/javascript">
@@ -45,6 +75,7 @@
   slidesToScroll:1,
   autoplay: true,
   autoplaySpeed: 3000,
+  draggable: true,
 // 画像下のドット（ページ送り）を表示
   dots:true,
 });

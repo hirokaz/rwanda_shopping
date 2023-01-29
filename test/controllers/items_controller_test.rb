@@ -5,4 +5,9 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
     get items_path
     assert_response :success
   end
+
+  test "should get item" do
+    get item_path(user)
+    assert_response :success
+  end
 end

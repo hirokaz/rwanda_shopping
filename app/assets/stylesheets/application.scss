@@ -10,6 +10,28 @@ body{
     color:black;
 }
 
+.product-price{
+    padding:15px  0;
+}
+
+.title-detail{
+    padding:15px 0;
+}
+
+.add-to-cart{
+    padding:15px 0;
+}
+
+.View-All-button{
+    float:right;
+  }
+
+.product-price-index{
+   font-size: 18px;
+   font-weight: bold;
+}
+
+
 .side-navbar-sub-title
 {
     color:#909090;
@@ -31,3 +53,26 @@ body{
 {
     color: #909090 !important;
 }
+
+#wrap{
+    padding: 50px 0 0 0;
+  }
+  #slider,#thumbnail_slider{
+    width: 300px;
+    margin: 0 auto 10px;
+  }
+  .slide-item{
+    img{
+      width: 100%;
+    }  
+  }
+  .thumbnail-item{
+    img{
+      width: 98%;
+      margin: 0 auto;
+    } 
+  }
+.slick-slider{
+    padding-left: 0px !important;
+  }
+
