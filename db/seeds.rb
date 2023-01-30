@@ -18,3 +18,8 @@
     price: price,
   )
 end
+
+Admin.create!(
+  email: "test@test.com",
+  password: "hogehoge111",
+)
