@@ -7,7 +7,7 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get item" do
-    get item_path(user)
+    get item_path(:id)
     assert_response :success
   end
 end
