@@ -10,16 +10,17 @@
   description = "sample text zone sample text zone sample text zone"
   size = ["S", "M", "L"].sample
   price = Faker::Commerce.price
+  category_id = [1, 2].sample
 
-  Item.create(
+  Item.create!(
     name: name,
     description: description,
     size: size,
     price: price,
+    category_id: category_id,
   )
 end
 
-Admin.create!(
-  email: "test@test.com",
-  password: "hogehoge111",
-)
+#Admin.create!(
+# password: "hogehoge111",
+#)
