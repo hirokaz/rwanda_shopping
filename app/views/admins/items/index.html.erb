@@ -1,0 +1,33 @@
+
+<div class="low">
+  <div class="col">
+    <h2>Admin Item-page</h2>
+  </div>
+   <div class="col">
+    <%= link_to("add item", new_admins_item_path, {class: "btn btn-outline-primary View-All-button"}) %>
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">name</th>
+      <th scope="col">description</th>
+      <th scope="col">price</th>
+      <th scope="col">category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @item.each do |item| %>
+    <tr>
+        <td><%= item.id %></td>
+        <td><%= item.name %></td>
+        <td><%= item.description %></td>
+        <td><%= item.price %></td>
+        <td><%= item.category.name %></td>
+        <td><%= link_to 'show' , item_path(item) %></td>
+        <td><%= link_to 'edit' , edit_admins_item_path(item) %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

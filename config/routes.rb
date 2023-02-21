@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => "/admin", as: "rails_admin"
   devise_for :admins
+  namespace :admins do
+    resources :items, only: [:edit, :update, :index, :new, :create, :destroy]
+  end
+  mount RailsAdmin::Engine => "/admin", as: "rails_admin"
   root "items#index"
   resources :items, param: :id
   resources :categories
