@@ -25,8 +25,8 @@
         <td><%= item.description %></td>
         <td><%= item.price %></td>
         <td><%= item.category.name %></td>
-        <td><%= link_to 'show' , item_path(item) %></td>
-        <td><%= link_to 'edit' , edit_admins_item_path(item) %></td>
+        <td><%= link_to 'show', item_path(item) %></td><!--items/show.html.erbに飛ぶ。-->
+        <td><%= link_to 'edit', edit_admins_item_path(item) %></td>
     </tr>
 <% end %>
   </tbody>

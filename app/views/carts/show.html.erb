@@ -1,0 +1,42 @@
+
+<h1>Shopping Cart</h1>
+
+<% if @cart.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart.each do |cart_item| %>
+        <tr>
+          <td><%= cart_item.item.name %></td>
+          <td><%= cart_item.item.price %></td>
+          <td><%= cart_item.quantity %></td>
+          <td><%= cart_item.quantity * cart_item.item.price %></td>
+          <%
+=begin%>
+ <td><%= link_to "Remove", remove_item_path(cart_item), method: :delete %></td> 
+<%
+=end%>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3"><strong>Total:</strong></td>
+        <td><%= @cart.sum { |cart_item| cart_item.quantity * cart_item.item.price } %></td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+<% else %>
+  <p>Your shopping cart is empty.</p>
+<% end %>
+
+<p><%= link_to "Continue Shopping", items_path %></p>
