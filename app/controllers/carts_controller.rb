@@ -16,9 +16,9 @@ class CartsController < ApplicationController
     end
   end
 
-  def remove_item
-    @cart_item = CartItem.find(params[:id])
-    @cart_item.destroy
+  def destroy
+    @cart_item = CartItem.find(params[:id]).destroy
+    flash[:success] = "Delete the items"
     redirect_to cart_path
   end
 

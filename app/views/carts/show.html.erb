@@ -19,11 +19,7 @@
           <td><%= cart_item.item.price %></td>
           <td><%= cart_item.quantity %></td>
           <td><%= cart_item.quantity * cart_item.item.price %></td>
-          <%
-=begin%>
- <td><%= link_to "Remove", remove_item_path(cart_item), method: :delete %></td> 
-<%
-=end%>
+          <td><%= button_to "Remove", cart_path(cart_item.id), method: :delete %></td> 
         </tr>
       <% end %>
     </tbody>

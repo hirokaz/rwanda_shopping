@@ -329,6 +329,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activestorage
   aws-sdk-s3
   bootsnap (>= 1.4.4)
   bootstrap
