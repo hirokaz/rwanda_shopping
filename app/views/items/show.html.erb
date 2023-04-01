@@ -3,20 +3,18 @@
     <div class="col">
        <div id="wrap">
                   <ul id="slider">
-                    <li class="slide-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_1.jpg" alt="画像"></li>
-                    <li class="slide-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_2.jpg" alt="画像"></li>
-                    <li class="slide-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_3.jpg" alt="画像"></li>
-                    <li class="slide-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_4.jpg" alt="画像"></li>
-                    <li class="slide-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_5.jpg" alt="画像"></li>
-                    <li class="slide-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_6.jpg" alt="画像"></li>
+                      <%@item.images.each do |image|%>
+                        <li class="slide-item">
+                          <%= image_tag image,class:"image-preview" %>
+                        </li>
+                     <% end %>
                   </ul>
                   <ul id="thumbnail_slider">
-                    <li class="thumbnail-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_1.jpg" alt="画像"></li>
-                    <li class="thumbnail-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_2.jpg" alt="画像"></li>
-                    <li class="thumbnail-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_3.jpg" alt="画像"></li>
-                    <li class="thumbnail-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_4.jpg" alt="画像"></li>
-                    <li class="thumbnail-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_5.jpg" alt="画像"></li>
-                    <li class="thumbnail-item"><img data-lazy="https://takblog.site/wp-content/themes/takblog/assets/img/blanks/post19_6.jpg" alt="画像"></li>
+                   <%@item.images.each do |image|%>
+                      <li class="thumbnail-item">
+                        <%= image_tag image %>
+                      </li>
+                   <% end %>
                   </ul>
             </div>
     </div>
@@ -28,24 +26,18 @@
         <h2 class="text-success"><%= @item.price %>$<h2>
       </div>
         <div class="add-to-cart">
-            <div class="row">
-                <div class="col-6">
-                      <select class="form-select pr-2" aria-label="Default select example">
-                        <option selected>select</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3"></option>
-                      </select>  
-                </div>     
-                <div class="col-6">
-               <%= button_to "add_to_cart", add_item_path(id: @item.id), method: :post %>
-                <%= form_with url: add_item_path(item_id: @item.id) do |form| %>
-                  <%= form.number_field :quantity, value: 1, min: 1 %>
-                  <%= form.submit "Add to Cart" %>
+                 <%= form_with url: add_item_path(item_id: @item.id),class:"form-inline" do |form| %>
+                    <div class="row">
+                      <div class="col">
+                        <%= form.select :quantity, (1..10), {}, { class: "form-control form-select dropdown" } %>
+                      </div>
+                      <div class="col"> 
+                        <%= form.submit "Add to Cart",class:"btn btn-primary" %>
+                      </div>
+                    </div>
                 <% end %>
-                </div>
 
-            </div>
+            
         </div>          
        </div>  
       </div>
@@ -70,15 +62,77 @@
         Clean the surface with a damp cloth.a tray covered with a cloth.A cloth is a piece of cloth which you use for a particular purpose,
         such as cleaning something or covering something.
         Clean the surface with a damp cloth.a tray covered with a cloth.
-        <%@item.images.each do |image|%>
-        <%= image_tag image %>
-        <% end %>
         </p>
     </div>   
-</div>      
+</div>     
+<div class="row mt-4">
+  <!--プレビューの写真を全画面表示-->
+    <div class="modal">
+      <span class="close">&times;</span>
+      <img src="" alt="" class="modal-content">
+      <div id="caption"></div>
+    </div>
+  </div>
+  </div>
+
+<div id="wrap">
+                  <ul id="slider">
+                      <%@item.images.each do |image|%>
+                        <li class="slide-item">
+                          <%= image_tag image %>
+                        </li>
+                     <% end %>
+                  </ul>
+                  <ul id="thumbnail_slider">
+                   <%@item.images.each do |image|%>
+                      <li class="thumbnail-item">
+                        <%= image_tag image %>
+                      </li>
+                   <% end %>
+                  </ul>
+            </div>
+
 
 
 <script type="text/javascript">
+// 画像をクリックしたときにモーダルウィンドウを表示するイベントを設定
+var images = document.getElementsByClassName("image-preview");
+var modal = document.getElementsByClassName("modal")[0];
+var modalImg = document.getElementsByClassName("modal-content")[0];
+var captionText = document.getElementById("caption");
+
+for (var i = 0; i < images.length; i++) {
+  images[i].addEventListener("click", function() {
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+  });
+}
+
+// モーダルウィンドウの×印をクリックしたときにモーダルウィンドウを閉じるイベントを設定
+var close = document.getElementsByClassName("close")[0];
+close.addEventListener("click", function() {
+  modal.style.display = "none";
+});
+
+$(function() {
+  // メイン画像とサムネイル画像を取得
+  var $mainImage = $('.main-image img');
+  var $thumbnailImages = $('.thumbnail-images img');
+
+  // サムネイル画像をクリックしたらメイン画像を切り替える
+  $thumbnailImages.on('click', function() {
+    var imageUrl = $(this).attr('src');
+    $mainImage.attr('src', imageUrl);
+  });
+});
+
+modal.style.display = "none";
+close.addEventListener("click", function() {
+  modal.style.display = "none";
+});
+
+
   $(function(){
  var mainSlider = "#slider"; //メインスライダーid
  var thumbnailSlider = "#thumbnail_slider"; //サムネイルスライダーid

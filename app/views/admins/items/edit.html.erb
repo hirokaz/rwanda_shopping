@@ -18,9 +18,10 @@
   </div>
   <div class="col-12">
     <%= f.label :size %>
-    <%= f.select :size, [["S", "S"], ["M", "M"],["L","L"]], include_blank: "select",class:"form-select" %>
+    <%= f.select :size, [["S", "S"], ["M", "M"],["L","L"]], include_blank: "select",class:"form-control form-select dropdown" %>
     <%= f.label :category %>
-    <%= f.select :category_id, [["tops", 1], ["bottoms", 1]], include_blank: "select" ,class:"form-select" %>
+    <%= f.select :category_id, [["tops", 1], ["bottoms", 2]], include_blank: "select" ,class:"form-control form-select dropdown" %>
+
   </div>
   <div class="col-12">
     <button type="submit" class="btn btn-primary">item add</button>

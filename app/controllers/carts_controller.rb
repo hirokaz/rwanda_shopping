@@ -16,6 +16,12 @@ class CartsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+  end
+
   def destroy
     @cart_item = CartItem.find(params[:id]).destroy
     flash[:success] = "Delete the items"

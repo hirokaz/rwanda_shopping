@@ -1,15 +1,17 @@
-
-<h1>Shopping Cart</h1>
-
-<% if @cart.any? %>
-  <table>
+<div class="low">
+  <div class="col">
+    <h1>Shopping Cart</h1>
+  </div>
+ </div>
+ <% if @cart.any? %>
+  <table class="table">
     <thead>
       <tr>
-        <th>Product</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total</th>
-        <th>Remove</th>
+        <th scope="col">Product</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total</th>
+        <th scope="col">Remove</th>
       </tr>
     </thead>
     <tbody>
@@ -19,7 +21,8 @@
           <td><%= cart_item.item.price %></td>
           <td><%= cart_item.quantity %></td>
           <td><%= cart_item.quantity * cart_item.item.price %></td>
-          <td><%= button_to "Remove", cart_path(cart_item.id), method: :delete %></td> 
+          <td><%= button_to "Remove", cart_path(cart_item.id), method: :delete %></td>
+          
         </tr>
       <% end %>
     </tbody>
@@ -36,3 +39,4 @@
 <% end %>
 
 <p><%= link_to "Continue Shopping", items_path %></p>
+<%= button_to("confirm","#", {class: "btn btn-primary stretched-link"}) %>

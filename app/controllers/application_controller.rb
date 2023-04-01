@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  helper_method :current_cart
+
   def after_sign_in_path_for(admin)
     admins_items_path
   end
