@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   def index
-    @tops_item = Item.where(category_id: 1).last(7)
-    @bottoms_item = Item.where(category_id: 2).last(7)
+    @tops_item = Item.where(category_id: 1).last(3)
+    @bottoms_item = Item.where(category_id: 2).last(3)
   end
 
   def show
