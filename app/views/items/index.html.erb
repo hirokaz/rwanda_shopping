@@ -11,7 +11,7 @@
     <%= link_to("View All", category_path(item.category_id), {class: "btn btn-outline-primary View-All-button"}) %>
   </div>
 </div>
-<div class="row row-cols-1 row-cols-md-3">
+<div class="row px-3 pb-2 row-cols-1 row-cols-md-3">
   <%= render 'items', items: @tops_item %>
 </div>
 
@@ -25,7 +25,7 @@
   </div>
 </div>
 <div class="row row-cols-1 row-cols-md-3">
-  <%= render 'topitems', items: @bottoms_item %>
+  <%= render 'items', items: @bottoms_item %>
 </div>
 
 
