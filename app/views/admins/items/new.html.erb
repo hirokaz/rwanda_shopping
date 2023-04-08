@@ -18,10 +18,11 @@
     <%= f.text_field :description, class: "form-control", placeholder: "Enter item description", rows:"3" %>
   </div>
   <div class="col-12">
-    <%= f.label :size, class:"form-label" %>
-    <%= f.select :size, [["S", "S"], ["M", "M"],["L","L"]], include_blank: "select", class: "form-control form-select dropdown" %>
     <%= f.label :category, class:"form-label" %>
-    <%= f.select :category_id, [["tops", 1], ["bottoms", 2]], include_blank: "select" ,class:"form-control form-select dropdown" %>
+    <%= f.select :category_id, [["boys", 1], ["girls", 2]], include_blank: "select" ,class:"form-control form-select dropdown" %>
+    <%= f.label :top_image, class:"form-label" %>
+    <%= f.file_field :top_image, id: "image-upload" %>
+    <%= f.label :images, class:"form-label" %>
     <%= f.file_field :images, multiple: true, id: "image-upload" %>
     <div class="preview-image" id="image-preview"></div>
   </div>

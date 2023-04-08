@@ -3,6 +3,11 @@
   <div class="col Item-title">
     <h1><%= item.category.name %></h1>
   </div> 
+  <div class="col">
+   <%= link_to 'high', category_path(price_asc: "true"), class:"button-primary" %>
+   <%= link_to 'low', category_path(price_desc: "true"), class:"button-primary" %>
+
+  </div>
 </div>
 <div class="row row-cols-1 row-cols-md-3 g-4 pt-3"> 
   <% @category_item.each do|item| %>

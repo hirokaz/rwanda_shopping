@@ -1,6 +1,5 @@
 class CategoriesController < ApplicationController
   def index
-    @items = Item.where(category_id: params[:category_id])
     @categories = Category.all
   end
 
@@ -8,6 +7,12 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category_item = Category.find(params[:id]).items
+    if params[:price_asc]
+      @category_item = Category.find(params[:id]).items.order(price: :asc)
+    elsif params[:price_desc]
+      @category_item = Category.find(params[:id]).items.order(price: :desc)
+    else
+      @category_item = Category.find(params[:id]).items
+    end
   end
 end
