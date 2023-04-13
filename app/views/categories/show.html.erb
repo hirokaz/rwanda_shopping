@@ -1,21 +1,27 @@
+<% item=@category_item.first %>
+<%provide(:title,item.category.name)%>
 <div class="row pt-2 pb-2">
-  <% item=@category_item.first %>
   <div class="col Item-title">
     <h1><%= item.category.name %></h1>
-  </div> 
-  <div class="col">
-   <%= link_to 'high', category_path(price_asc: "true"), class:"button-primary" %>
-   <%= link_to 'low', category_path(price_desc: "true"), class:"button-primary" %>
-
+  </div>
+   <div class="col pt-2 dropdown">
+     <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+       Sort
+     </a>
+     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+       <li><%= link_to 'Low-price', category_path(price_asc: "true"), class:"dropdown-item" %></li>
+       <li><%= link_to 'High-price', category_path(price_desc: "true"), class:"dropdown-item" %></li>
+       <li><%= link_to 'latest', category_path(new_item: "true"), class:"dropdown-item" %></li>
+     </ul>
   </div>
 </div>
 <div class="row row-cols-1 row-cols-md-3 g-4 pt-3"> 
   <% @category_item.each do|item| %>
-    <div class="col-4 col-md-6 col-lg-4">
+    <div class="col-4 col-md-6 col-lg-4 px-0">
       <div class="card h-100"> 
-        <%= image_tag item.images.first,class:"card-img-top" %>
+        <%= image_tag item.images.first.variant(resize_to_fill: [400, 400]).processed,class:"card-img-top p-0" %>
         <div class="card-body">
-          <h5 class="card-title"><%=item.name%></h5>
+          <h5 class="card-title"><%=truncate(item.name, length: 10)%></h5>
           <div class="product-price-index pb-2 text-success"><span><%=item.price%>$</span></div>  
           <%= link_to("Buy It", item_path(item), {class: "btn btn-primary stretched-link"}) %>
         </div>

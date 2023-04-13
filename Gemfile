@@ -22,7 +22,7 @@ gem "jbuilder", "~> 2.7"
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem "image_processing", "~> 1.2"
 
 gem "bootstrap"
 gem "jquery-rails"
@@ -66,3 +66,5 @@ gem "devise"
 gem "rails_admin"
 gem "cancancan"
 gem "activestorage"
+gem "mini_magick"
+gem "active_storage_validations"

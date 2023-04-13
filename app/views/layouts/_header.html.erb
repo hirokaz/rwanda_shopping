@@ -1,142 +1,3 @@
-<%
-=begin%>
- <nav class="navbar bg-primary fixed-top header">
-  <div class="container-fluid">
-    <%= link_to root_path do %>
-        <%= image_tag "rwandalogo.png",class:"navbar-brand header-title",width:"110" ,height:"40"%>
-    <% end %>
-    <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-expanded="false" aria-controls="offcanvasNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link active side-navbar-sub-title" aria-current="page">Shopping</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Boy</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Girl</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page">Setting</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Privacy Policy</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Languages</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">How to Return</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About this site</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</nav> 
-<%
-=end%>
-
-<%
-=begin%>
- <nav class="navbar navbar-expand-lg navbar-bg bg-dark fixed-top header">
-  <!-- Container wrapper -->
-  <div class="container">
-    <!-- Toggle button -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-mdb-toggle="collapse"
-      data-mdb-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Collapsible wrapper -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!-- Navbar brand -->
-
-      <a class="navbar-brand mt-2 mt-lg-0" href="#">
-       <h2 class="text-white pt">rwanda_shopping</h2>
-      </a>
-      <!-- Left links -->
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-3">
-        <li class="nav-item">
-          <%= link_to("Home", root_path,class:"nav-link") %>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Team</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Projects</a>
-        </li>
-      </ul>
-      <!-- Left links -->
-    </div>
-    <!-- Collapsible wrapper -->
-
-    <!-- Right elements -->
-    <div class="d-flex align-items-center">
-      <!-- Avatar -->
-      <%= link_to cart_path(current_cart.id) do %>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
-            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
-          </svg>
-      <% end %>
-      </div>
-    
-    <!-- Right elements -->
-  </div>
-  <!-- Container wrapper -->
-</nav>
-<!-- Navbar --> 
-<%
-=end%>
-
-<%
-=begin%>
- <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
-  <div class="container">
-      <h3><%= link_to("rwanshop", root_path,class:"navbar-brand text-white pt-1")%></h3>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-       <ul class="nav navbar-nav">
-       <li class="nav-item">
-         <%= link_to("Home",root_path,class:"nav-link")%>
-       </li>
-      </ul>
-      <ul class="nav navbar-nav">
-       <li class="nav-item">
-        <%= link_to cart_path(current_cart.id) do %>
-          <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-bag-fill pt-1" viewBox="0 0 16 16">
-            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
-          </svg>
-        <% end %>
-       </li>
-      </ul>
-      </div>
-    </div>
-  </div>
-</nav> 
-<%
-=end%>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
   <div class="container">
     <h3><%= link_to("rwanshop", root_path,class:"navbar-brand text-white pt-1")%></h3>
@@ -153,19 +14,13 @@
             Category
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Girls</a></li>
-            <li><a class="dropdown-item" href="#">Boys</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><%= link_to("boys", category_path(1),{class:"dropdown-item"}) %></li>
+            <li><%= link_to("girls", category_path(2),{class:"dropdown-item"}) %> </li>
           </ul>
         </li>
       </ul>
       <div class="d-flex">
-        <%= link_to cart_path(current_cart.id) do %>
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bag-fill nav-link mt-1" viewBox="0 0 16 16">
-              <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
-            </svg>
-        <% end %>
+        <%= link_to("Your favorite", cart_path(current_cart.id),class:"nav-link" )%>
       </div>
     </div>
   </div>

@@ -8,26 +8,7 @@ class Item < ApplicationRecord
 
   scope :price_asc, -> { order(price: :asc) }
   scope :price_desc, -> { order(price: :desc) }
-
+  scope :new_item, -> { order(created_at: :desc) }
   has_one_attached :top_image
   has_many_attached :images
-  validate :image_type, :image_size
-
-  def image_type
-    images.each do |image|
-      if !image.blob.content_type.in?(%('image/jpeg image/png'))
-        image.purge
-        errors.add(:images, "Add by format jpeg or png")
-      end
-    end
-  end
-
-  def image_size
-    images.each do |image|
-      if image.blob.byte_size > 1.megabyte
-        image.purge
-        errors.add(:images, "Add by size less than 1MB")
-      end
-    end
-  end
 end

@@ -9,6 +9,8 @@ RUN apt-get install -yqq --no-install-recommends \
   postgresql-client \
   vim \
   yarn \
+  imagemagick
+  
 RUN apt-get install vim
 
 RUN mkdir /myapp

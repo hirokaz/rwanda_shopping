@@ -1,11 +1,11 @@
 <% items.each do |item| %>
     <div class="col-4 px-0"> 
         <div class="card h-100">
-            <%= image_tag item.images.first,class:"card-img-top p-0" %>
+            <%= image_tag item.images.first.variant(resize_to_fill: [400, 400]).processed, class:"card-img-top p-0" %>
             <div class="card-body">
-            <h5 class="card-title  fw-bold p-0"><%= truncate(item.name, length: 18)%></h5>
-            <p class="card-text text-success fw-bold"><span><%= item.price %>$</span></p>
-            <%= link_to("Buy It", item_path(item), {class: "btn btn-primary stretched-link"}) %>
+                <h5 class="card-title  fw-bold p-0"><%= truncate(item.name, length: 10)%></h5>
+                <p class="card-text text-success fw-bold"><span><%= item.price %>$</span></p>
+                <%= link_to("Buy It", item_path(item), {class: "btn btn-primary stretched-link"}) %>
             </div>
         </div>
     </div>
