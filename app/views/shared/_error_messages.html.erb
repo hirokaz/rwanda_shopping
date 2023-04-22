@@ -1,0 +1,12 @@
+<% if @item.errors.any? %><!--@user newした後、errorがあったとき。これはもとからrails に備わる機能-->
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@item.errors.count, "error") %><!--pluralizeは英語の文法直しの役割-->
+    </div>
+    <ul>
+    <% @item.errors.full_messages.each do |msg| %><!--errors.full_messagesもrailsに備わる機能-->
+      <li><%= msg %></li><!--エラーメッセージを表示-->
+    <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -1,0 +1,200 @@
+@import "bootstrap";
+
+
+// Path: rwanda_shopping\app\javascript\stylesheets\bootstrap.scss
+body{
+  padding-top: 60px
+}
+
+.abc{
+font-weight: bold;
+}
+/* 画像プレビューのスタイル */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* グリッドレイアウトを使用して、自動的に列数を調整 */
+  gap: 10px;
+}
+
+.image-preview {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.card-img-top{
+  padding:20px;
+}
+
+
+/* モーダルウィンドウのスタイル */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 25px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+img.resized {
+  max-width: 100%;
+  height: auto;
+}
+
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 800px;
+  height: auto;
+}
+
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.header{
+  font-family: Inter;
+  color:black;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+}
+
+.navbar .nav-link{
+  color:#fff !important;
+  font-size: 14px;
+  font-weight:700;
+}
+
+.preview-image {
+  max-width: 100px;
+  height: auto;
+}
+
+
+
+.product-price{
+  padding:15px  0;
+}
+
+.title-detail{
+  padding:15px 0;
+}
+
+.add-to-cart{
+  padding:15px 0;
+}
+
+.View-All-button{
+  float:right;
+  }
+
+.product-price-index{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+.side-navbar-sub-title
+{
+  color:#909090;
+}
+
+.header-title{
+  font-weight:bold;
+}
+
+.autoplay img{
+  width:100%;/*横幅に制限*/
+  margin:0 auto;/*中央寄せ*/
+  margin-top:10px;/*上に余白*/
+}
+
+.card{
+  display: flex;
+}
+
+
+.slick-prev:before,
+.slick-next:before
+{
+  color: #909090 !important;
+}
+
+#wrap{
+  padding: 50px 0 0 0;
+  }
+  #slider,#thumbnail_slider{
+  width: 300px;
+  margin: 0 auto 10px;
+  }
+  .slide-item{
+    img{
+      width: 100%;
+    }  
+    padding: 30px;
+  }
+  .thumbnail-item{
+    img{
+      width: 98%;
+    } 
+    padding: 10px;
+  }
+.slick-slider{
+  padding-left: 0px !important;
+  }
+
+
+
+  .slider {
+    margin: 0 auto;
+    max-width: 500px;
+    width: 80%;
+  }
+  .slider-img {
+    margin: 0 5px;
+  }
+  .slider-img img {
+    height: auto;
+    width: 100%;
+  }
+
+  .preview-image img, svg {
+    vertical-align: middle;
+    padding: 10px;
+}
+
+.preview-image {
+    max-width: 100px;
+    height: auto;
+    display: flex;
+}
+
+.preview-image-box{
+  border:2px dashed #ccc;
+}
+
+.edit-preview-images img {
+  width: 100px;
+  height: 100px;
+}
+
+.edit-preview-images {
+  border: 2px dashed grey;
+}

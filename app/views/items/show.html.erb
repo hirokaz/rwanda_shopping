@@ -1,0 +1,124 @@
+<%provide(:title,"item") %>
+<div class="row mt-4">
+    <div class="col">
+       <div id="wrap">
+                  <ul id="slider">
+                      <%@item.images.each do |image|%>
+                        <li class="slide-item">
+                          <%= image_tag image,class:"image-preview" %>
+                        </li>
+                     <% end %>
+                  </ul>
+                  <ul id="thumbnail_slider">
+                   <%@item.images.each do |image|%>
+                      <li class="thumbnail-item">
+                        <%= image_tag image %>
+                      </li>
+                   <% end %>
+                  </ul>
+            </div>
+    </div>
+    <div class="col mt-5">
+      <div class="title-detail">
+        <h2><%= @item.name %></h2>
+      </div>
+      <div class="product-price">
+        <h2 class="text-success"><%= @item.price %>$<h2>
+      </div>
+        <div class="add-to-cart">
+                 <%= form_with url: add_item_path(item_id: @item.id),class:"form-inline" do |form| %>
+                    <div class="row">
+                      <div class="col">
+                        <%= form.select :quantity, (1..10), {}, { class: "form-control form-select dropdown" } %>
+                      </div>
+                      <div class="col"> 
+                        <%= form.submit "Add to Cart",class:"btn btn-primary" %>
+                      </div>
+                    </div>
+                <% end %>
+
+            
+        </div>          
+       </div>  
+      </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col p-4">
+        <h3>description</h3>
+        <%= @item.description %>
+    </div>   
+</div>     
+<div class="row mt-4">
+  <!--プレビューの写真を全画面表示-->
+    <div class="modal">
+      <span class="close">&times;</span>
+      <img src="" alt="" class="modal-content">
+      <div id="caption"></div>
+    </div>
+  </div>
+  </div>
+
+
+
+<script type="text/javascript">
+// 画像をクリックしたときにモーダルウィンドウを表示するイベントを設定
+var images = document.getElementsByClassName("image-preview");
+var modal = document.getElementsByClassName("modal")[0];
+var modalImg = document.getElementsByClassName("modal-content")[0];
+var captionText = document.getElementById("caption");
+
+for (var i = 0; i < images.length; i++) {
+  images[i].addEventListener("click", function() {
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+  });
+}
+
+// モーダルウィンドウの×印をクリックしたときにモーダルウィンドウを閉じるイベントを設定
+var close = document.getElementsByClassName("close")[0];
+close.addEventListener("click", function() {
+  modal.style.display = "none";
+});
+
+$(function() {
+  // メイン画像とサムネイル画像を取得
+  var $mainImage = $('.main-image img');
+  var $thumbnailImages = $('.thumbnail-images img');
+
+  // サムネイル画像をクリックしたらメイン画像を切り替える
+  $thumbnailImages.on('click', function() {
+    var imageUrl = $(this).attr('src');
+    $mainImage.attr('src', imageUrl);
+  });
+});
+
+modal.style.display = "none";
+close.addEventListener("click", function() {
+  modal.style.display = "none";
+});
+
+
+  $(function(){
+ var mainSlider = "#slider"; //メインスライダーid
+ var thumbnailSlider = "#thumbnail_slider"; //サムネイルスライダーid
+ 
+  $(mainSlider).slick({
+    autoplay: true,
+    speed: 1000,
+    arrows: false,
+    asNavFor: thumbnailSlider
+  });
+  $(thumbnailSlider).slick({
+    slidesToShow: 3,
+    speed: 1000,    
+    asNavFor: mainSlider
+  });
+  //#thumbnail_sliderでクリックしたスライドをカレントにする
+  $(thumbnailSlider+" .slick-slide").on('click',function(){
+    var index = $(this).attr("data-slick-index");
+    $(thumbnailSlider).slick("slickGoTo",index,false);
+  });
+});
+</script>

@@ -1,0 +1,57 @@
+<h2>Item-追加</h2>
+<%= form_with model:@item, url:admins_items_path, class:"form-inline" do |f|%>
+ <%= render 'shared/error_messages' %>
+ <form>
+ <div class="row g-3">
+  <div class="col-md-6">
+     <%= f.label :name, class:"form-label"%>
+     <%= f.text_field :name, class: "form-control", placeholder: "Enter item name"%>
+  </div>
+  <div class="col-md-6">
+     <%= f.label :price, class:"form-label"%>
+     <%= f.number_field :price, class: "form-control", placeholder: "Enter item price"%>
+  </div>
+</div>
+<div class="row g-3">
+  <div class="col-12">
+    <%= f.label :description, class:"form-label" %>
+    <%= f.text_field :description, class: "form-control", placeholder: "Enter item description", rows:"3" %>
+  </div>
+  <div class="col-12">
+    <%= f.label :category, class:"form-label" %>
+    <%= f.select :category_id, [["boys", 1], ["girls", 2]], include_blank: "select" ,class:"form-control form-select dropdown" %>
+    <%= f.label :images, class:"form-label" %>
+    <%= f.file_field :images, multiple: true, id: "image-upload" %>
+    <div class="preview-image-box">
+      <div class="preview-image" id="image-preview"></div>
+    </div>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">item add</button>
+  </div>
+</div>
+</form>
+<% end %>
+
+<script>
+  const uploadField = document.getElementById("image-upload");
+
+  uploadField.addEventListener("change", (event) => {
+    const imagePreview = document.getElementById("image-preview");
+    imagePreview.innerHTML = "";
+
+    for (let i = 0; i < event.target.files.length; i++) {
+      const file = event.target.files[i];
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        const img = document.createElement("img");
+        img.setAttribute("src", event.target.result);
+        img.setAttribute("class", "preview-image");
+        imagePreview.appendChild(img);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  });
+</script>

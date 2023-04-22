@@ -7,15 +7,26 @@ RUN apt-get update -yqq && curl -sL https://deb.nodesource.com/setup_16.x | bash
 RUN apt-get install -yqq --no-install-recommends \
   nodejs \
   postgresql-client \
-  vim
+  vim \
+  yarn \
+  imagemagick 
+  
+RUN apt-get install vim
 
 RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
-#COPY Gemfile.lock /myapp/Gemfile.lock
+COPY Gemfile.lock /myapp/Gemfile.lock
+RUN curl -sL https://deb.nodesource.com/setup_12.x  | bash -
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update -qq && apt-get install -y nodejs yarn
+
 
 RUN bundle install
 COPY . /myapp
+RUN npm rebuild node-sass #maybe you don't need it, I do
+RUN bundle exec rails assets:precompile
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
