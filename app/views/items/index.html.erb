@@ -1,4 +1,5 @@
 <%provide(:title,"items")%>
+
 <div class="row pt-2 pb-2">
   <% item=@tops_item.first %>
   <div class="col Item-title">
@@ -21,7 +22,7 @@
     <%= link_to("View All", category_path(item.category_id), {class: "btn btn-outline-primary View-All-button"}) %>
   </div>
 </div>
-<div class="row row-cols-1 row-cols-md-3">
+<div class="row px-3 pb-2 row-cols-1 row-cols-md-3">
   <%= render 'items', items: @bottoms_item %>
 </div>
 

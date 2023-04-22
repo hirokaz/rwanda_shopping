@@ -1,4 +1,4 @@
-
+<%provide(:title,"item") %>
 <div class="row mt-4">
     <div class="col">
        <div id="wrap">
@@ -43,26 +43,10 @@
       </div>
     </div>
 </div>
-<div class="row p-5">
-    <div class="col p-5">
+<div class="row">
+    <div class="col p-4">
         <h3>description</h3>
-        <p><%= @item.description %> A cloth is a piece of cloth which you use for a particular purpose,
-        such as cleaning something or covering something.
-        Clean the surface with a damp cloth.a tray covered with a cloth.
-        A cloth is a piece of cloth which you use for a particular purpose,
-        such as cleaning something or covering something.
-        Clean the surface with a damp cloth.a tray covered with a cloth.A cloth is a piece of cloth which you use for a particular purpose,
-        such as cleaning something or covering something.
-        Clean the surface with a damp cloth.a tray covered with a cloth.A cA cloth is a piece of cloth which you use for a particular purpose,
-        such as cleaning something or covering something.
-        Clean the surface with a damp cloth.a tray covered with a cloth.loth is a piece of cloth which you use for a particular purpose,
-        such as cleaning something or covering something.
-        Clean the surface with a damp cloth.a tray covered with a cloth.A cloth is a piece of cloth which you use for a particular purpose,
-        such as cleaning something or covering something.
-        Clean the surface with a damp cloth.a tray covered with a cloth.A cloth is a piece of cloth which you use for a particular purpose,
-        such as cleaning something or covering something.
-        Clean the surface with a damp cloth.a tray covered with a cloth.
-        </p>
+        <%= @item.description %>
     </div>   
 </div>     
 <div class="row mt-4">
@@ -74,23 +58,6 @@
     </div>
   </div>
   </div>
-
-<div id="wrap">
-                  <ul id="slider">
-                      <%@item.images.each do |image|%>
-                        <li class="slide-item">
-                          <%= image_tag image %>
-                        </li>
-                     <% end %>
-                  </ul>
-                  <ul id="thumbnail_slider">
-                   <%@item.images.each do |image|%>
-                      <li class="thumbnail-item">
-                        <%= image_tag image %>
-                      </li>
-                   <% end %>
-                  </ul>
-            </div>
 
 
 

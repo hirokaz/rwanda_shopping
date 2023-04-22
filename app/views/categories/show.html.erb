@@ -4,7 +4,7 @@
   <div class="col Item-title">
     <h1><%= item.category.name %></h1>
   </div>
-   <div class="col pt-2 dropdown">
+   <div class="col pt-2 dropdown  d-flex justify-content-end">
      <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
        Sort
      </a>
@@ -21,12 +21,11 @@
       <div class="card h-100"> 
         <%= image_tag item.images.first.variant(resize_to_fill: [400, 400]).processed,class:"card-img-top p-0" %>
         <div class="card-body">
-          <h5 class="card-title"><%=truncate(item.name, length: 10)%></h5>
-          <div class="product-price-index pb-2 text-success"><span><%=item.price%>$</span></div>  
-          <%= link_to("Buy It", item_path(item), {class: "btn btn-primary stretched-link"}) %>
+          <div class="product-price-index pb-4 text-success"><span><%=item.price%>$</span></div>  
+          <%= link_to("show", item_path(item), {class: "btn btn-primary stretched-link"}) %>
         </div>
       </div>
     </div>
   <% end %>
 </div> 
-
+<%= paginate @category_item, theme: 'bootstrap-5' %>

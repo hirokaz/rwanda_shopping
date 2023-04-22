@@ -1,12 +1,14 @@
 @import "bootstrap";
 
 
-
-
+// Path: rwanda_shopping\app\javascript\stylesheets\bootstrap.scss
 body{
   padding-top: 60px
 }
 
+.abc{
+font-weight: bold;
+}
 /* 画像プレビューのスタイル */
 .image-grid {
   display: grid;
@@ -173,5 +175,26 @@ img.resized {
     width: 100%;
   }
 
+  .preview-image img, svg {
+    vertical-align: middle;
+    padding: 10px;
+}
 
-  
+.preview-image {
+    max-width: 100px;
+    height: auto;
+    display: flex;
+}
+
+.preview-image-box{
+  border:2px dashed #ccc;
+}
+
+.edit-preview-images img {
+  width: 100px;
+  height: 100px;
+}
+
+.edit-preview-images {
+  border: 2px dashed grey;
+}

@@ -11,7 +11,7 @@ class Admins::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-
+    @item.images.attach(params[:item][:images]) if params[:item][:images].present?
     if @item.save
       flash[:success] = "Success"
       redirect_to admins_items_path
@@ -26,6 +26,7 @@ class Admins::ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
+    @item.images.attach(params[:item][:images]) if @item.images.blank?
     if @item.update(item_params)
       flash[:success] = "Success"
       redirect_to admins_items_path

@@ -20,11 +20,11 @@
   <div class="col-12">
     <%= f.label :category, class:"form-label" %>
     <%= f.select :category_id, [["boys", 1], ["girls", 2]], include_blank: "select" ,class:"form-control form-select dropdown" %>
-    <%= f.label :top_image, class:"form-label" %>
-    <%= f.file_field :top_image, id: "image-upload" %>
     <%= f.label :images, class:"form-label" %>
     <%= f.file_field :images, multiple: true, id: "image-upload" %>
-    <div class="preview-image" id="image-preview"></div>
+    <div class="preview-image-box">
+      <div class="preview-image" id="image-preview"></div>
+    </div>
   </div>
   <div class="col-12">
     <button type="submit" class="btn btn-primary">item add</button>

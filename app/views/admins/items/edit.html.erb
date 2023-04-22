@@ -21,11 +21,21 @@
     <%= f.select :size, [["S", "S"], ["M", "M"],["L","L"]], include_blank: "select",class:"form-control form-select dropdown" %>
     <%= f.label :category %>
     <%= f.select :category_id, [["tops", 1], ["bottoms", 2]], include_blank: "select" ,class:"form-control form-select dropdown" %>
-
+  </div>
+  <div class="col-12">
+    <% if @item.images.present?%>
+      <% @item.images.each do |image|%>
+        <!-- @item.imagesが存在する場合のみ image_tag を使用(if文ないとエラーが出る) -->
+        <span><b>[現在登録されている画像]</b></span>
+        <div class="edit-preview-images">
+          <%= image_tag image, width: 200, class: "mb-2" %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
   <div class="col-12">
     <button type="submit" class="btn btn-primary">item add</button>
-</div>
+  </div>
 </form>
 <% end %>
 <%= button_to admins_item_path(@item.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', form: { class: 'd-inline' } do %>

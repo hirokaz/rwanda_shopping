@@ -5,10 +5,9 @@ class Item < ApplicationRecord
   validates :description, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 9_999_999 },
                     format: { with: /\A[0-9]+\z/ }
-
   scope :price_asc, -> { order(price: :asc) }
   scope :price_desc, -> { order(price: :desc) }
   scope :new_item, -> { order(created_at: :desc) }
-  has_one_attached :top_image
   has_many_attached :images
-end
+  validates :images, attached: true, content_type: %w[image/png image/jpg image/jpeg], size: { less_than: 10.megabytes }
+  end
