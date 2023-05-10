@@ -18,6 +18,9 @@
             <li><%= link_to("girls", category_path(2),{class:"dropdown-item"}) %> </li>
           </ul>
         </li>
+        <li class="nav-item">
+          <%= link_to("How to use", "#",class:"nav-link")%>
+        </li>
       </ul>
       <div class="d-flex">
         <%= link_to("Your favorite", cart_path(current_cart.id),class:"nav-link" )%>
