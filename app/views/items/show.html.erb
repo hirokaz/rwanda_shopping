@@ -26,16 +26,20 @@
         <h2 class="text-success"><%= @item.price %>$<h2>
       </div>
         <div class="add-to-cart">
-                 <%= form_with url: add_item_path(item_id: @item.id),class:"form-inline" do |form| %>
-                    <div class="row">
-                      <div class="col">
-                        <%= form.select :quantity, (1..10), {}, { class: "form-control form-select dropdown" } %>
-                      </div>
-                      <div class="col"> 
-                        <%= form.submit "Add to Cart",class:"btn btn-primary" %>
-                      </div>
-                    </div>
-                <% end %>
+        <% if @item.reserved? %>
+          <div class="alert alert-danger" role="alert">
+            It is already reserved and cannot be added.
+          </div>
+        <% else %>
+          <%= form_with url: add_item_path(item_id: @item.id),class:"form-inline" do |form| %>
+              <div class="row">
+              <%= form.hidden_field :quantity, value: 1 %>
+                <div class="col"> 
+                  <%= form.submit "Add to Cart",class:"btn btn-primary" %>
+                </div>
+              </div>
+          <% end %>
+        <% end %>
 
             
         </div>          

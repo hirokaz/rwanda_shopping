@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   root "items#index"
   resources :items, param: :id
   resources :categories
-  resources :carts, only: [:show, :index, :destroy]
+  resources :carts do
+    member do
+      get 'confirm_order'
+      post 'place_order'
+    end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

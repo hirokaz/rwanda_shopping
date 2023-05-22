@@ -31,10 +31,18 @@
                   <!-- Data -->
                   <p><strong><%= cart_item.item.name %></strong></p>
                   <p>sex:<%=cart_item.item.category.name %> </p>
-                    <%= button_to cart_path(cart_item.id),class:"btn btn-primary btn-sm me-1 mb-2", method: :delete do %>
+                    <%= button_to cart_path(cart_item),class:"btn btn-primary btn-sm me-1 mb-2", method: :delete do %>
+
                     <i class="fas fa-trash"></i>remove
                     <% end %>
                   <!-- Data -->
+                  <p>
+                    <% if cart_item.item.reserved? %>
+                      
+                    <% else %>
+
+                    <% end %>
+                  </p>
                 </div>
 
                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
@@ -69,8 +77,14 @@
                   <span><strong>$<%= @cart.sum { |cart_item| cart_item.quantity * cart_item.item.price } %></strong></span>
                 </li>
               </ul>
-                <%= button_to "Continue Shopping", items_path, class:"btn btn-primary" %>
-            </div>
+              <% if @cart.all? { |cart_item| cart_item.item.reserved? } %>
+                <div class="alert alert-danger" role="alert">
+                  It is already reserved and cannot be added.
+                </div>
+              <% else %>
+                <%= button_to "reserve", confirm_order_cart_path(@cart), method: :get, class: "btn btn-primary" %>
+              <% end %>
+                </div>
           </div>
         </div>
       </div>

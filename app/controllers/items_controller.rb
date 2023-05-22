@@ -10,7 +10,5 @@ class ItemsController < ApplicationController
 
   private
 
-  #def category
-  # @items = Item.where(size: "S") #これでカテゴリーわけする？
-  # end
+
 end
