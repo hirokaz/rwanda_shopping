@@ -17,20 +17,22 @@
     <%= f.text_field :description, class: "form-control",placeholder: "Enter item description",rows:"3" %>
   </div>
   <div class="col-12">
-    <%= f.label :size %>
-    <%= f.select :size, [["S", "S"], ["M", "M"],["L","L"]], include_blank: "select",class:"form-control form-select dropdown" %>
     <%= f.label :category %>
-    <%= f.select :category_id, [["tops", 1], ["bottoms", 2]], include_blank: "select" ,class:"form-control form-select dropdown" %>
+    <%= f.select :category_id, [["boys", 1], ["girls", 2]], include_blank: "select" ,class:"form-control form-select dropdown" %>
+  </div>
+  <div class="col-12">
+    <%= f.label :status %>
+    <%= f.select :status, Item.statuses.keys.to_a, class:"form-control form-select dropdown" %>
   </div>
   <div class="col-12">
     <% if @item.images.present?%>
+    <span><b>[現在登録されている画像]</b></span>
+    <div class="edit-preview-images">
       <% @item.images.each do |image|%>
         <!-- @item.imagesが存在する場合のみ image_tag を使用(if文ないとエラーが出る) -->
-        <span><b>[現在登録されている画像]</b></span>
-        <div class="edit-preview-images">
           <%= image_tag image, width: 200, class: "mb-2" %>
-        </div>
       <% end %>
+    </div>  
     <% end %>
   </div>
   <div class="col-12">

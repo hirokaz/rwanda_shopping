@@ -17,15 +17,13 @@ class CartsController < ApplicationController
     @order = Order.new(order_params)
     @order.cart = @cart
   
-    if @cart_items.all? { |cart_item| cart_item.item.reserved == false }
+    if @cart_items.all? { |cart_item| cart_item.item.status == "unreserved"  }
       if @order.save!
         # 注文が確定したので、itemのreservedカラムを更新する
         @cart_items.each do |cart_item|
-          cart_item.item.update(reserved: true)
+          cart_item.item.update(status:1)
         end
         #whatsappに送るものを追加する。
-  
-        @cart_items.destroy_all
   
         redirect_to root_path, notice: 'You reserved!'
       else

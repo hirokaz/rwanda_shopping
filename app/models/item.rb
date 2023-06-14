@@ -9,5 +9,6 @@ class Item < ApplicationRecord
   scope :price_desc, -> { order(price: :desc) }
   scope :new_item, -> { order(created_at: :desc) }
   has_many_attached :images
+  enum status: {unreserved: 0, reserved: 1, purchased: 2 }
   validates :images, attached: true, content_type: %w[image/png image/jpg image/jpeg], size: { less_than: 10.megabytes }
   end

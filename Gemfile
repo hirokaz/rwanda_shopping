@@ -70,3 +70,4 @@ gem "mini_magick"
 gem "active_storage_validations"
 gem "kaminari"
 gem "bootstrap5-kaminari-views"
+gem 'flag_shih_tzu'

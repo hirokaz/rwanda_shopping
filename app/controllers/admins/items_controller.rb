@@ -41,9 +41,15 @@ class Admins::ItemsController < ApplicationController
     redirect_to admins_items_path
   end
 
+  def updating_status
+    @item=Item.find(params[:id])
+    @item
+  end
+
+
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :price, :size, :category_id, :quantity, images: [])
+    params.require(:item).permit(:name, :description, :price, :size,:status, :category_id, :quantity, images: [])
   end
 end

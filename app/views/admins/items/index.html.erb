@@ -15,6 +15,7 @@
       <th scope="col">description</th>
       <th scope="col">price</th>
       <th scope="col">category</th>
+      <th scope="col">status</th>
     </tr>
   </thead>
   <tbody>
@@ -25,8 +26,10 @@
         <td><%= item.description %></td>
         <td><%= item.price %></td>
         <td><%= item.category.name %></td>
+        <td><%= item.status %></td>
         <td><%= link_to 'show', item_path(item) %></td><!--items/show.html.erbに飛ぶ。-->
         <td><%= link_to 'edit', edit_admins_item_path(item) %></td>
+
     </tr>
 <% end %>
   </tbody>
