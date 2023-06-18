@@ -3,11 +3,11 @@ class CartsController < ApplicationController
   before_action :set_cart, only: [:confirm_order, :place_order, :add_item]
 
   def show
-    @cart = current_cart.cart_items
+    @cart_items = current_cart.cart_items
   end
 
   def confirm_order
-    @cart = @cart.cart_items
+    @cart = current_cart.cart_items
     @order = Order.new
   end
 

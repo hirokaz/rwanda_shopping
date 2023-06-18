@@ -1,6 +1,6 @@
 class Admins::ItemsController < ApplicationController
   before_action :authenticate_admin!
-
+  before_action :set_item, only: [:edit,:update,:destroy]
   def index
     @item = Item.all
   end
@@ -13,7 +13,7 @@ class Admins::ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.images.attach(params[:item][:images]) if params[:item][:images].present?
     if @item.save
-      flash[:success] = "Success"
+      flash[:success] = "Adding item is Successful"
       redirect_to admins_items_path
     else
       render :new
@@ -21,11 +21,9 @@ class Admins::ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
     @item.images.attach(params[:item][:images]) if @item.images.blank?
     if @item.update(item_params)
       flash[:success] = "Success"
@@ -36,18 +34,18 @@ class Admins::ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id]).destroy
+    @item.destroy
     flash[:success] = "item deleted"
     redirect_to admins_items_path
   end
 
-  def updating_status
-    @item=Item.find(params[:id])
-    @item
-  end
-
 
   private
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
 
   def item_params
     params.require(:item).permit(:name, :description, :price, :size,:status, :category_id, :quantity, images: [])

@@ -3,17 +3,17 @@
     <h1>Your favorite items</h1>
   </div>
  </div>
- <% if @cart.any? %>
+ <% if @cart_items.any? %>
   <section class="h-100 gradient-custom">
     <div class="container py-5">
       <div class="row d-flex justify-content-center my-4">
         <div class="col-md-8">
           <div class="card mb-4">
             <div class="card-header py-3">
-              <h5 class="mb-0">Cart - <%=@cart.count%> items</h5>
+              <h5 class="mb-0">Cart - <%=@cart_items.count%> items</h5>
             </div>
             <div class="card-body">
-            <% @cart.each do |cart_item| %>
+            <% @cart_items.each do |cart_item| %>
               <!-- Single item -->
               <div class="row">
                 <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
@@ -61,7 +61,7 @@
             </div>
           </div>
         </div>
-      <% cart_item=@cart %>
+      <% cart_item=@cart_items %>
         <div class="col-md-4">
           <div class="card mb-4">
             <div class="card-header py-3">
@@ -74,15 +74,15 @@
                   <div>
                     <strong>Total price</strong>
                   </div>
-                  <span><strong>$<%= @cart.sum { |cart_item| cart_item.quantity * cart_item.item.price } %></strong></span>
+                  <span><strong>$<%= @cart_items.sum { |cart_item| cart_item.quantity * cart_item.item.price } %></strong></span>
                 </li>
               </ul>
-              <% if @cart.all? { |cart_item| cart_item.item.reserved? } %>
+              <% if @cart_items.all? { |cart_item| cart_item.item.reserved? } %>
                 <div class="alert alert-danger" role="alert">
                   It is already reserved and cannot be added.
                 </div>
               <% else %>
-                <%= button_to "reserve", confirm_order_cart_path(@cart), method: :get, class: "btn btn-primary" %>
+                <%= button_to "reserve", confirm_order_cart_path(@cart_items), method: :get, class: "btn btn-primary" %>
               <% end %>
                 </div>
           </div>
