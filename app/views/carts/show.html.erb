@@ -30,7 +30,7 @@
                 <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
                   <!-- Data -->
                   <p><strong><%= cart_item.item.name %></strong></p>
-                  <p>sex:<%=cart_item.item.category.name %> </p>
+                  <p>sex:<%= cart_item.item.category.name %> </p>
                     <%= button_to cart_path(cart_item),class:"btn btn-primary btn-sm me-1 mb-2", method: :delete do %>
 
                     <i class="fas fa-trash"></i>remove
@@ -49,7 +49,7 @@
                   
                   <!-- Price -->
                   <p class="text-start text-md-center">
-                    <strong>$<%= cart_item.item.price*cart_item.quantity %></strong>
+                    <strong>$<%= cart_item.item.price %></strong>
                   </p>
                   <!-- Price -->
                 </div>
@@ -61,7 +61,6 @@
             </div>
           </div>
         </div>
-      <% cart_item=@cart_items %>
         <div class="col-md-4">
           <div class="card mb-4">
             <div class="card-header py-3">
@@ -74,7 +73,7 @@
                   <div>
                     <strong>Total price</strong>
                   </div>
-                  <span><strong>$<%= @cart_items.sum { |cart_item| cart_item.quantity * cart_item.item.price } %></strong></span>
+                  <span><strong>$<%= @cart_items.sum { |cart_item| cart_item.item.price } %></strong></span>
                 </li>
               </ul>
               <% if @cart_items.all? { |cart_item| cart_item.item.reserved? } %>

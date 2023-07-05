@@ -21,8 +21,8 @@
     <%= f.select :category_id, [["boys", 1], ["girls", 2]], include_blank: "select" ,class:"form-control form-select dropdown" %>
   </div>
   <div class="col-12">
-    <%= f.label :status %>
-    <%= f.select :status, Item.statuses.keys.to_a, class:"form-control form-select dropdown" %>
+    <%= f.label :state %>
+    <%= f.select :aasm_state, Item.aasm.states.map(&:name), class: "form-control form-select dropdown" %>
   </div>
   <div class="col-12">
     <% if @item.images.present?%>
