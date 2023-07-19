@@ -1,0 +1,14 @@
+# .rubocop.yml
+
+Style/ColonMethodCall:
+  Enabled: true
+  EnforcedStyle: nested
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+  Style/Documentation:
+  Enabled: false
+
+  Metrics/BlockLength:
+  Enabled: false

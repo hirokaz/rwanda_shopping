@@ -1,4 +1,6 @@
-require "active_support/core_ext/integer/time"
+# frozen_string_literal: true
+
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -16,13 +18,13 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join("tmp", "caching-dev.txt").exist?
+  if Rails.root.join('tmp', 'caching-dev.txt').exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}",
+      'Cache-Control' => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -74,9 +76,21 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
-  config.action_mailer.default_url_options = { host: "localhost:3000" }
-  Rails.application.routes.default_url_options[:host] = "localhost"
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  Rails.application.routes.default_url_options[:host] = 'localhost'
   Rails.application.routes.default_url_options[:port] = 3000
   config.action_mailer.delivery_method = :letter_opener_web
   config.web_console.development_only = false
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port: 587,
+    address: 'smtp.gmail.com',
+    domain: 'gmail.com',
+    user_name: 'nao.shiba.public@gmail.com',
+    password: 'cohjkmrsoqmexdoc',
+    authentication: 'login',
+    enable_starttls_auto: true
+  }
 end
