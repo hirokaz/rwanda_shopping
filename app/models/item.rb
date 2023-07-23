@@ -19,6 +19,10 @@ class Item < ApplicationRecord
     event :soldout do
       transitions from: :reserved, to: :sold
     end
+
+    event :fix do
+      transitions from: :sold, to: :unreserved
+    end
   end
   belongs_to :category
   has_many :cart_items
@@ -32,6 +36,7 @@ class Item < ApplicationRecord
   scope :price_asc, -> { order(price: :asc) }
   scope :price_desc, -> { order(price: :desc) }
   scope :new_item, -> { order(created_at: :desc) }
-  has_many_attached :images
+  has_many_attached :images ,dependent: :destroy
+  accepts_nested_attributes_for :images_attachments, allow_destroy: true
   validates :images, attached: true, content_type: %w[image/png image/jpg image/jpeg], size: { less_than: 10.megabytes }
 end

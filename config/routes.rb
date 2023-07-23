@@ -3,7 +3,13 @@
 Rails.application.routes.draw do
   devise_for :admins
   namespace :admins do
-    resources :items, only: %i[edit update index new create destroy]
+    resources :items do
+      member do
+        patch 'soldout'
+        patch 'fix'
+        delete 'delete_image'
+      end
+    end
   end
   post '/add_item', to: 'carts#add_item'
   root 'items#index'

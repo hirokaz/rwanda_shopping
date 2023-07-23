@@ -38,7 +38,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails'
-  gem 'rspec-retry'
+  gem 'factory_bot_rails'
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -53,7 +54,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
-  gem 'spring'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
@@ -75,6 +76,5 @@ gem 'devise'
 gem 'flag_shih_tzu'
 gem 'kaminari'
 gem 'mini_magick'
-gem 'rails_admin'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 

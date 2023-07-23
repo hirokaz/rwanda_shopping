@@ -181,7 +181,6 @@ img.resized {
 }
 
 .preview-image {
-    max-width: 100px;
     height: auto;
     display: flex;
 }
@@ -190,11 +189,31 @@ img.resized {
   border:2px dashed #ccc;
 }
 
-.edit-preview-images img {
-  width: 100px;
-  height: 100px;
-}
+
 
 .edit-preview-images {
   border: 2px dashed grey;
+  display:flex;
 }
+
+.new-img-box{
+  display:flex;
+}
+
+
+.image-block {
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  display: flex;
+  width:50%;
+}
+
+.image-block img {
+  margin-bottom: 10px;
+}
+
+.blue-icon {
+  color: blue;
+}
+

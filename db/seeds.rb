@@ -7,20 +7,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-100.times do |_n|
-  name = Faker::Commerce.product_name
-  description = 'sample text zone sample text zone sample text zone'
-  size = %w[S M L].sample
-  price = Faker::Commerce.price
-  category_id = [1, 2].sample
 
-  Item.create!(
-    name: name,
-    description: description,
-    size: size,
-    price: price,
-    category_id: category_id
+category_ids = [1, 2]
+50.times do
+  item = Item.new(
+    name: Faker::Commerce.product_name,
+    description: Faker::Lorem.sentence,
+    price: Faker::Commerce.price(range: 1..1_000),
+    category_id: category_ids.sample,
+    quantity: Faker::Number.between(from: 1, to: 10),
+    aasm_state: 'unreserved'
   )
+  item.images.attach(io: URI.open(Faker::LoremFlickr.image), filename: 'image.jpg')
+  item.save!
 end
 
 # Admin.create!(

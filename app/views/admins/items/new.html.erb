@@ -20,11 +20,26 @@
   <div class="col-12">
     <%= f.label :category, class:"form-label" %>
     <%= f.select :category_id, [["boys", 1], ["girls", 2]], include_blank: "select" ,class:"form-control form-select dropdown" %>
-    <%= f.label :images, class:"form-label" %>
-    <%= f.file_field :images, multiple: true, id: "image-upload" %>
-    <div class="preview-image-box">
-      <div class="preview-image" id="image-preview"></div>
+    <%= f.label :images,"Item Images", class:"form-label" %>
+      <div id="image-box-1">
+        <div class="item-num-0" id="image-box_container">
+          <%= f.fields_for :images do |i| %>
+            <div class="preview-image-box">
+                <div class="d-flex row" id="preview-image-box">
+                  <label class="w-50" for="img-file">
+                    <i class="fa fa-plus-circle add-image-icon justify-content-center d-flex h3" aria-hidden="true"></i>
+                  </label>
+                </div>
+                <%= f.file_field :images,multiple: true, id: "img-file",style: "display: none;" %>
+                  <div class="preview-image w-50" id="image-preview-container" style: "display: none;"></div>    
+              </div>
+          <% end %>
+        </div>
+      </div>
     </div>
+    
+
+    
   </div>
   <div class="col-12">
     <button type="submit" class="btn btn-primary">item add</button>
@@ -34,24 +49,60 @@
 <% end %>
 
 <script>
-  const uploadField = document.getElementById("image-upload");
+$(function(){
+  //DataTransferオブジェクトで、データを格納する箱を作る
+  var dataBox = new DataTransfer();
+  //querySelectorでfile_fieldを取得
+  var file_field = document.querySelector('input[type=file]')
+  //fileが選択された時に発火するイベント
+  $('#img-file').change(function(){
+    //選択したfileのオブジェクトをpropで取得
+    var files = $('input[type="file"]').prop('files')[0];
+    $.each(this.files, function(i, file){
+      //FileReaderのreadAsDataURLで指定したFileオブジェクトを読み込む
+      var fileReader = new FileReader();
 
-  uploadField.addEventListener("change", (event) => {
-    const imagePreview = document.getElementById("image-preview");
-    imagePreview.innerHTML = "";
+      //DataTransferオブジェクトに対して、fileを追加
+      dataBox.items.add(file)
+      //DataTransferオブジェクトに入ったfile一覧をfile_fieldの中に代入
+      file_field.files = dataBox.files
 
-    for (let i = 0; i < event.target.files.length; i++) {
-      const file = event.target.files[i];
-      const reader = new FileReader();
-
-      reader.onload = (event) => {
-        const img = document.createElement("img");
-        img.setAttribute("src", event.target.result);
-        img.setAttribute("class", "preview-image");
-        imagePreview.appendChild(img);
+      var num = $('.item-image').length + 1 + i
+      fileReader.readAsDataURL(file);
+       //画像が10枚になったら超えたらドロップボックスを削除する
+      if (num == 10){
+        $('#image-box_container').css('display', 'none')   
+      }
+      //読み込みが完了すると、srcにfileのURLを格納
+      fileReader.onloadend = function() {
+        var src = fileReader.result
+        var html= `<div class='image-block item-image col-4 col-md-6 col-lg-4 px-0' data-image="${file.name}">
+                    <div class='item-image_content'>
+                      <div class='item-image_content-icon'>
+                        <img src=${src} class="w-100">
+                      </div>
+                    </div>
+                    <div class='item-image_operetion'>
+                      <div class='btn btn-danger item-image_operetion-delete'>削除</div>
+                    </div>
+                  </div>`
+        //image_box__container要素の前にhtmlを差し込む
+        $('#preview-image-box').prepend(html);
       };
-
-      reader.readAsDataURL(file);
-    }
+      //image-box__containerのクラスを変更し、CSSでドロップボックスの大きさを変えてやる。
+      $('#image-box_container').attr('class', `item-num-${num}`)
+    });
   });
+  //削除ボタンをクリックすると発火するイベント
+  $(document).on("click", '.item-image_operetion-delete', function(){
+    //プレビュー要素を取得
+    var target_image = $(this).closest('.item-image');
+    //プレビューを削除
+    target_image.remove();
+    //inputタグに入ったファイルを削除
+    file_field.val("");
+  });
+});
+
+
 </script>

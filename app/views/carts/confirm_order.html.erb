@@ -26,3 +26,9 @@
 
   <%= f.submit 'submit', class: 'btn btn-primary' %>
 <% end %>
+
+<script type="text/javascript">
+  window.addEventListener('popstate', function(event) {
+    location.reload();
+  });
+</script>

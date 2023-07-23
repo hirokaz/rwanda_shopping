@@ -8,9 +8,12 @@ services:
       - "3000:3000"
     volumes:
       - .:/myapp
+      - gem_data:/usr/local/bundle
     env_file:
       - .env_file/development/database
       - .env_file/development/web
+    depends_on:
+      - database
 
   database:
     image: postgres:14
@@ -23,3 +26,4 @@ services:
 
 volumes:
   db-store:
+  gem_data:
