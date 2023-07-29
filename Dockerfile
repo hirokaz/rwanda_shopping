@@ -4,6 +4,7 @@ ENV LANG=C.UTF-8
 ENV TZ=Asia/Tokyo
 
 RUN apt-get update -yqq && curl -sL https://deb.nodesource.com/setup_16.x | bash -
+#必要なライブラリを作成している
 RUN apt-get install -yqq --no-install-recommends \
   nodejs \
   postgresql-client \

@@ -26,7 +26,7 @@ class Admins::ItemsController < ApplicationController
   def edit; end
 
   def update
-    @item.images.attach(params[:item][:images]) if @item.images.blank?
+    @item.images.attach(params[:item][:images]) if params[:item][:images].present?
     if @item.update(item_params)
       flash[:success] = 'Success'
       redirect_to admins_items_path
@@ -41,6 +41,26 @@ class Admins::ItemsController < ApplicationController
     redirect_to admins_items_path
   end
 
+  def delete_image
+    image = ActiveStorage::Attachment.find(params[:image_id])
+    image.purge
+    redirect_to edit_admins_item_path(params[:id]), notice: 'Image was successfully deleted.'
+  end
+
+  def soldout
+    @item = Item.find(params[:id])
+    @item.soldout!
+    @item.save
+    redirect_to edit_admins_item_path(@item), notice: 'Item is now sold out.'
+  end
+  
+  def fix
+    @item = Item.find(params[:id])
+    @item.fix!
+    @item.save
+    redirect_to edit_admins_item_path(@item), notice: 'Item is now unreserved'
+  end
+
   private
 
   def set_item
@@ -48,6 +68,6 @@ class Admins::ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :price, :size, :status, :category_id, :quantity, images: [])
+    params.require(:item).permit(:name, :description, :price, :size, :status, :category_id, :quantity, images_attachments_attributes: [ :id, :_destroy ])
   end
 end

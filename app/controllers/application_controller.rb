@@ -2,12 +2,12 @@
 
 # application_controller
 class ApplicationController < ActionController::Base
+  before_action :authenticate_admin!
+  before_action :config_permitted_parameters, if: :devise_controller?
   helper_method :current_cart
-
   def after_sign_in_path_for(_admin)
     admins_items_path
   end
-
   private
 
   # セッションの作成
@@ -20,5 +20,10 @@ class ApplicationController < ActionController::Base
     session[:cart_id] = current_cart.id
     # Cart情報を返却
     current_cart
+  end
+  
+  def config_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up)
+    devise_parameter_sanitizer.permit(:account_update)
   end
 end
