@@ -1,32 +1,38 @@
 
-<div class="low">
-  <div class="col">
-    <h2>Admin Item-page</h2>
-  </div>
-   <div class="col">
-    <%= link_to("add item", new_admins_item_path, {class: "btn btn-outline-primary View-All-button"}) %>
+<%= link_to 'Edit account', edit_admin_registration_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>Admin Item-page</h2>
+    </div>
+    <div class="col-sm-4 text-sm-end">
+      <%= link_to("add item", new_admins_item_path, {class: "btn btn-outline-primary View-All-button"}) %>
+    </div>
   </div>
 </div>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">name</th>
-      <th scope="col">price</th>
-      <th scope="col">category</th>
-      <th scope="col">state</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-    <tr>
-        <td><%= item.name %></td>
-        <td><%= item.price %></td>
-        <td><%= item.category.name %></td>
-        <td><%= item.aasm_state %></td>
-        <td><%= link_to 'show', item_path(item) %></td><!--items/show.html.erbに飛ぶ。-->
-        <td><%= link_to 'edit', edit_admins_item_path(item) %></td>
-
-    </tr>
-<% end %>
-  </tbody>
-</table>
+<div class="container mt-4">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">name</th>
+          <th scope="col">price</th>
+          <th scope="col">category</th>
+          <th scope="col">state</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= item.price %></td>
+          <td><%= item.category.name %></td>
+          <td><%= item.aasm_state %></td>
+          <td><%= link_to 'show', item_path(item) %></td><!--items/show.html.erbに飛ぶ。-->
+          <td><%= link_to 'edit', edit_admins_item_path(item) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -15,14 +15,12 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+  end
 
   # DELETE /resource
   # def destroy
@@ -39,6 +37,14 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   # end
 
   # protected
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+
+  # 編集後のリダイレクト先を指定するメソッド
+  def after_update_path_for(resource)
+    admins_items_path(resource)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
