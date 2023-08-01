@@ -2,7 +2,6 @@
 
 # application_controller
 class ApplicationController < ActionController::Base
-  before_action :authenticate_admin!
   before_action :config_permitted_parameters, if: :devise_controller?
   helper_method :current_cart
   def after_sign_in_path_for(_admin)

@@ -77,4 +77,3 @@ gem 'flag_shih_tzu'
 gem 'kaminari'
 gem 'mini_magick'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
