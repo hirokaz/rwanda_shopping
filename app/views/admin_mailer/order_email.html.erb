@@ -3,14 +3,13 @@
 <p>[お客様情報]</p>
 <p>名前: <%= @order.name %></p>
 <p>電話番号: <%= @order.phone_number %></p>
-
 [ご注文商品一覧]
 
 <% @order.order_items.each do |order_item| %>
   <p>商品名:<%= order_item.item.name %></p>
   <p>価格:<%= order_item.item.price %></p>
   <p>画像:(画像はテキストメールには表示できません。詳細を確認するには以下のURLをクリックしてください。)</p>
-  <p>商品詳細URL:http://localhost:3000/items/<%= order_item.item.id %></p>
+  <p>商品詳細URL: <%= item_url(order_item.item.id) %></p>
 <% end %>
 
 
