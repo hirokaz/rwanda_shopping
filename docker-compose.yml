@@ -12,8 +12,6 @@ services:
     env_file:
       - .env_file/development/database
       - .env_file/development/web
-    environment:
-      - RAILS_ENV=development
     depends_on:
       - database
 

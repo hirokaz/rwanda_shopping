@@ -27,7 +27,7 @@ class CartsController < ApplicationController
           item.save
         end
         @cart_items.destroy_all
-        AdminMailer.order_email(@order).deliver
+        AdminMailer.order_email(@order).deliver_now
         redirect_to root_path, notice: 'You reserved!'
       else
         render :confirm_order

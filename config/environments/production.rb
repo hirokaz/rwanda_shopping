@@ -119,15 +119,17 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  passwordRails.application.credentials.gmail[:password]
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: 'https://rwanshop-99737d9bf613.herokuapp.com' }
   config.action_mailer.smtp_settings = {
-    port: 587,
     address: 'smtp.gmail.com',
-    domain: 'gmail.com',
-    user_name: 'non.reply@gmail.com',
-    password: 'cohjkmrsoqmexdoc',
-    authentication: 'login',
+    port: 587,
+    domain: 'example.com',
+    user_name: Rails.application.credentials.dig(:gmail, :email),
+    password: Rails.application.credentials.dig(:gmail, :app_password),
+    authentication: 'plain',
     enable_starttls_auto: true
   }
   config.active_storage.service = :amazon

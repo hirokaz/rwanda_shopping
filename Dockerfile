@@ -2,7 +2,6 @@ FROM ruby:2.7.7
 
 ENV LANG=C.UTF-8
 ENV TZ=Asia/Tokyo
-ENV RAILS_ENV=production
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add

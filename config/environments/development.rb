@@ -83,15 +83,15 @@ Rails.application.configure do
   config.web_console.development_only = false
 
   config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = {  host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    port: 587,
     address: 'smtp.gmail.com',
-    domain: 'gmail.com',
-    user_name: 'none.reply@gmail.com',
-    password: 'cohjkmrsoqmexdoc',
-    authentication: 'login',
+    port: 587,
+    domain: 'example.com',
+    user_name: Rails.application.credentials.dig(:gmail, :email),
+    password: Rails.application.credentials.dig(:gmail, :app_password),
+    authentication: 'plain',
     enable_starttls_auto: true
   }
-  config.active_storage.service = :local
 end
