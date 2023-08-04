@@ -7,7 +7,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-load(Rails.root.join("db", "seeds", "#{Rails.env.downcase}.rb"))
+Category.create(name: 'boys')
+Category.create(name: 'girls')
 
 category_ids = [1, 2]
 50.times do
@@ -23,6 +24,9 @@ category_ids = [1, 2]
   item.save!
 end
 
+# db/seeds.rb
+
+Admin.create(email: 'admin@gmail.com', password: 'admin1', password_confirmation: 'admin1')
 # Admin.create!(
 # password: "hogehoge111",
 # )
