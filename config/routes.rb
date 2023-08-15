@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         patch 'fix'
         delete 'delete_image'
       end
+      get "order_index", on: :collection
     end
   end
   post '/add_item', to: 'carts#add_item'

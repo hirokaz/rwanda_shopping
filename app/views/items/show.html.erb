@@ -40,8 +40,15 @@
               </div>
           <% end %>
         <% end %>
-
-            
+        <div class="col">
+          <% if admin_signed_in? %>
+            <% if @item.reserved? %>
+              <%= button_to 'Sold Out', soldout_admins_item_path(@item), method: :patch, class: 'btn btn-success' %>
+            <% elsif @item.sold? %>
+              <%= button_to 'fix to unreserved', fix_admins_item_path(@item), method: :patch, class: 'btn btn-success' %>
+            <% end %>
+          <% end %>
+        </div>            
         </div>          
        </div>  
       </div>
@@ -87,11 +94,9 @@ close.addEventListener("click", function() {
 });
 
 $(function() {
-  // メイン画像とサムネイル画像を取得
   var $mainImage = $('.main-image img');
   var $thumbnailImages = $('.thumbnail-images img');
 
-  // サムネイル画像をクリックしたらメイン画像を切り替える
   $thumbnailImages.on('click', function() {
     var imageUrl = $(this).attr('src');
     $mainImage.attr('src', imageUrl);

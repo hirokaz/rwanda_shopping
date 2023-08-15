@@ -61,6 +61,11 @@ class Admins::ItemsController < ApplicationController
     redirect_to edit_admins_item_path(@item), notice: 'Item is now unreserved'
   end
 
+  def order_index
+    @orders_by_date = Order.all.group_by { |order| order.created_at.to_date }
+    @orders_by_date = @orders_by_date.sort_by { |date, _orders| date }.reverse.to_h
+  end
+
   private
 
   def set_item
