@@ -4,6 +4,7 @@
 class Admins::ItemsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_item, only: %i[edit update destroy]
+  
   def index
     @items = Item.all
   end
@@ -73,6 +74,6 @@ class Admins::ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :price, :size, :status, :category_id, :quantity, images_attachments_attributes: [ :id, :_destroy ])
+    params.require(:item).permit(:name, :description, :price, :size, :status, :category_id, :quantity, tag_ids:[], images_attachments_attributes: [ :id, :_destroy ])
   end
 end

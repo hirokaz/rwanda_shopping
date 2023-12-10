@@ -29,6 +29,8 @@ class Item < ApplicationRecord
   has_many :carts, through: :cart_items
   has_many :order_items
   has_many :orders, through: :order_items
+  has_many :item_tags, dependent: :destroy
+  has_many :tags, through: :item_tags
   validates :name, presence: true
   validates :description, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 9_999_999 },

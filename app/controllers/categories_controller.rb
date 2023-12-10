@@ -9,12 +9,20 @@ class CategoriesController < ApplicationController
   def edit; end
 
   def show
-    @category_item = if params[:price_asc]
-                       Category.find(params[:id]).items.order(price: :asc).page(params[:page]).per(20)
-                     elsif params[:price_desc]
-                       Category.find(params[:id]).items.order(price: :desc).page(params[:page]).per(20)
-                     else
-                       Category.find(params[:id]).items.page(params[:page]).per(20)
-                     end
+    @category = Category.find(params[:id])
+    @items = @category.items
+    
+    if params[:tags].present?
+      @items = @items.joins(:tags).where(tags: { id: params[:tags] })
+    end
+    
+    if params[:price_desc]
+      @items = @items.order(price: :desc)
+    elsif params[:price_asc]
+      @items = @items.order(price: :asc)
+    end
+    
+    @items = @items.page(params[:page]).per(15)
   end
+
 end

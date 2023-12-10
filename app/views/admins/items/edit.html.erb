@@ -59,6 +59,18 @@
     </div>
   </div>
   <div class="col-12">
+    <%= f.label :tags, "Item Tags", class:"form-label" %>
+    <div class="row">
+      <% Tag.all.each do |tag| %>
+        <div class="col-3">
+          <%= check_box_tag "item[tag_ids][]", tag.id, @item.tags.include?(tag), id: "item_tag_ids_#{tag.id}" %>
+          <%= label_tag "item_tag_ids_#{tag.id}", tag.name %>
+        </div>
+      <% end %>
+    </div>
+  </div> 
+</div>
+  <div class="col-12">
     <button type="submit" class="btn btn-primary">item add</button>
   </div>
 </form>

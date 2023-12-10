@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   devise_for :admins
   namespace :admins do
+    resources :tags
     resources :items do
       member do
         patch 'soldout'
@@ -12,8 +13,10 @@ Rails.application.routes.draw do
       get "order_index", on: :collection
     end
   end
+  # ここに、how_to_useのルーティングを追加する
   post '/add_item', to: 'carts#add_item'
   root 'items#index'
+  get '/how_to_use', to: 'how_to_use#index'
   resources :items, param: :id
   resources :categories
   resources :carts do
